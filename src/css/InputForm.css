@@ -1,0 +1,12 @@
+.InputForm {
+    width: 200px;
+}
+#inputname {
+    width: 100%;
+}
+#inputdate {
+    width: 75%;
+}
+#inputsubmit {
+    width: 50%;
+}
