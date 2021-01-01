@@ -10,6 +10,6 @@
     "scripts": ["background.js"],
     "persistent": false
   },
-  "content_security_policy": "script-src 'self' 'sha256-FwbA0bIg3RDUXH3pxkGsGJBhaSJ3kAwOYf9ggixi9y0='; object-src 'self'",
+  "content_security_policy": "script-src 'self' 'sha256-v6UtMl4yaAkqsOfezm3T72n9vlEkrYW8Zvr1YRnpaEA='; object-src 'self'",
   "manifest_version": 2
 }

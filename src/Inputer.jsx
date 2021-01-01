@@ -4,7 +4,7 @@ import './css/Inputer.css'
 export default function Inputer(props) {
     let {value, type, id} = props;
     
-    let inputblock = <input type={type}></input>;
+    let inputblock = <input type={type} required></input>;
     if (type === 'submit'){
         inputblock = <input type={type} value=""></input>;
     }
