@@ -13,10 +13,10 @@ chrome.runtime.onInstalled.addListener(function() {
         {
             "school": "Andover",
             "date": (new Date(2021,1,1)).toString()
-        }, {
-            "school": "dummy school",
-            "date": (new Date(2021,0,15)).toString()
-        }
+        },// {
+        //     "school": "dummy school",
+        //     "date": (new Date(2021,0,15)).toString()
+        // }
     ];
 
     chrome.storage.sync.set({deadlinelist: ddlist_temp_obj}, () => {
