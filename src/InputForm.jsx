@@ -1,20 +1,52 @@
 import React from 'react'
-import Inputer from './Inputer'
 import './css/InputForm.css'
-import './css/Inputer.css'
 
-export default function InputForm() {
-    return (
-        <form className='InputForm'>
-            <h3>Enter New School</h3>
-            <Inputer id='inputname' value='School Name' type='text' />
-            <Inputer id='inputdate' value='Deadline Date' type='date' />
+export default class InputForm extends React.Component {
+    state = {
+        inputschool: "",
+        inputdate: ""
+    }
 
+    onSubmit = event => {
+        event.preventDefault();
+        console.log(this.state);
+    }
 
-            <div id='inputsubmit' className='Inputer'>
-                <p style={{"textAlign": "center"}} className='inputerp'>Submit</p>
-                <input type='submit' required></input>
-            </div>
-        </form>
-    )
+    handleChange = (event, fieldname) => {
+        this.setState({[fieldname]: event.target.value});
+    }
+
+    render() {
+        return (
+            <form className='InputForm' onSubmit={this.onSubmit}>
+                <h3>Enter New School</h3>
+
+                <div id='inputname' className='Inputer'>
+                    <p>School Name</p>
+                    <input 
+                        type='text'
+                        onChange={e => {this.handleChange(e, 'inputschool')}}
+                        value={this.state.inputschool}
+                        required 
+                    />
+                </div>
+
+                <div id='inputdate' className='Inputer'>
+                    <p>Deadline Date</p>
+                    <input
+                        type='date'
+                        onChange={e => {this.handleChange(e, 'inputdate')}}
+                        value={this.state.inputdate}
+                        required
+                    />
+                </div>
+
+                <div id='inputsubmit' className='Inputer'>
+                    <p>Submit</p>
+                    <input type='submit' required></input>
+                </div>
+                
+            </form>
+        )
+    }
 }

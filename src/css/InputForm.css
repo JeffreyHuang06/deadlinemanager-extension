@@ -14,3 +14,31 @@ h3 {
     width: 75%;
     margin: 0 auto;
 }
+
+/* this was brought in from inputer.css */
+
+input {
+    width: 100%;
+    border: 2px solid black;
+    border-radius: 5em;
+}
+
+input:focus {
+    outline: none;
+}
+
+p {
+    margin: 0 auto;
+}
+
+input[type="submit"] {
+    background: none;
+}
+
+input[type='submit']:focus {
+    outline: blue;
+}
+
+.Inputer p {
+    text-align: center;
+}
