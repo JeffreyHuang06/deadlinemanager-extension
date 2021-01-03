@@ -15,3 +15,6 @@ input[type="submit"] {
 input[type='submit']:focus {
     outline: blue;
 }
+.Inputer p {
+    text-align: center;
+}

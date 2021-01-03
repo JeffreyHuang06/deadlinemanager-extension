@@ -1,18 +1,18 @@
-import React from 'react'
+import React, {useState} from 'react'
 import './css/Inputer.css'
 
 export default function Inputer(props) {
     let {value, type, id} = props;
-    
-    let inputblock = <input type={type} required></input>;
-    if (type === 'submit'){
-        inputblock = <input type={type} value=""></input>;
+    let [text,setText] = useState('');
+
+    function handleChange (event){
+        setText(event.target.value);
     }
 
     return (
         <div id={id} className='Inputer'>
-            <p style={{"textAlign": "center"}} className='inputerp'>{value}</p>
-            {inputblock}
+            <p>{value}</p>
+            <input type={type} onChange={handleChange} value={text} required></input>
         </div>
     )
 }
