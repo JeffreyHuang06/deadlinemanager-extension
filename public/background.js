@@ -19,9 +19,21 @@ chrome.runtime.onInstalled.addListener(function() {
         // }
     ];
 
+    let ddlistnames_temp_obj = [
+        "Exeter",
+        "Andover"
+    ];
+
+    // yes I know this architecture and system for storing is terrible but ill fix it later
+
     chrome.storage.sync.set({deadlinelist: ddlist_temp_obj}, () => {
         console.log("Successfully instantiated deadlinelist");
         console.log(ddlist_temp_obj);
+    });
+
+    chrome.storage.sync.set({schoollist: ddlistnames_temp_obj}, () => {
+        console.log("Successfully instantiated deadlinelistnames");
+        console.log(ddlistnames_temp_obj);
     });
 });
 
