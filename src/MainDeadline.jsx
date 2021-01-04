@@ -18,6 +18,7 @@ export default function MainDeadline() {
             setDate(nearest[0].date);
         }
 
+        // console.log(res); // temporary
     }
     function keepfetching() {
         setInterval(fetchData, 1000);
