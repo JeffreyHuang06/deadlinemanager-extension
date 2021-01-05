@@ -1,6 +1,8 @@
 import React from 'react'
-import './css/InputForm.css'
-import {checkList} from './chromeAPI/retrieveSchoolList'
+import '../css/InputForm.css'
+import {checkList} from '../chromeAPI/retrieveSchoolList'
+import {checkDate} from '../utils/checkDate'
+import {storeNewDeadline} from '../chromeAPI/storeNewDeadline'
 
 export default class InputForm extends React.Component {
     state = {
@@ -27,10 +29,8 @@ export default class InputForm extends React.Component {
             });
 
         // check to make sure the date hasnt been reached yet
-        let now = Date.now();
-        let checkDate = new Date(this.state.inputdate);
-
-        if (checkDate.getTime() < now)
+        let valdate = checkDate(this.state.inputdate);
+        if (!valdate) // add MSIN1DAY becauase the day value is 0 indexed so conflicts with Date() and date input
             this.setState({
                 invaliddate: true,
                 baddate: this.state.inputdate
@@ -49,8 +49,8 @@ export default class InputForm extends React.Component {
         
         // validate the form
         if (await this.validateForm()){
-            console.log('this is good');
-        } else console.log('this is bad');
+            storeNewDeadline(this.state.inputschool, this.state.inputdate);
+        }
     }
 
     handleChange = (event, fieldname) => {
