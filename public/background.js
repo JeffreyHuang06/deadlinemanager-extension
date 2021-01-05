@@ -8,15 +8,12 @@ chrome.runtime.onInstalled.addListener(function() {
     let ddlist_temp_obj = [
         {
             "school": "Exeter",
-            "date": (new Date(2021,0,15)).toString()
+            "date": "2021-01-15"
         },
         {
             "school": "Andover",
-            "date": (new Date(2021,1,1)).toString()
-        },// {
-        //     "school": "dummy school",
-        //     "date": (new Date(2021,0,15)).toString()
-        // }
+            "date": "2021-02-01"
+        }
     ];
 
     let ddlistnames_temp_obj = [
