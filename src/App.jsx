@@ -1,24 +1,15 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import MainDeadline from './components/MainDeadline'
 import InputForm from './components/InputForm'
-import Lists, {getContext} from './contexts/DeadlineList'
+
+// make all componets classes expect for those that useState
+// then use the <App /> to handle ALL STATE because it's all intertwined. I'm probably gonna put this on my big monitor
 
 export default function App() {
-  const [context, setContext] = useState({});
-
-  useEffect(() => {
-    (async() => {
-      let p = await getContext();
-      setContext(p);
-    })();
-
-    // because apparently youre not allowed to use an async func as your useeffect
-  }, []);
-  
   return (
-    <Lists.Provider value={context}>
+    <div className="App">
       <MainDeadline />
       <InputForm />
-    </Lists.Provider>
+    </div>
   );
 }
