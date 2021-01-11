@@ -7,35 +7,43 @@ export function retrieveJSONList() {
     });
 }
 
-export async function retrieveSortedJSONList() {
-    let retrievedJSONList = await retrieveJSONList();
-    
-    retrievedJSONList.sort((a,b) => {
+export function sortJSONList(list) {
+    if (list.length === 0) return list;
+
+    list.sort((a,b) => {
         let adate = new Date(a.date);
         let bdate = new Date(b.date);
         return bdate.getTime() - adate.getTime() < 0 ? 1 : -1;
     });
 
-    return retrievedJSONList;
+    return list;
 }
 
-export async function retrieveNearestDate(){
-    let rJL = await retrieveSortedJSONList();
-    let len = rJL.length;
+export async function retrieveSortedJSONList() {
+    return sortJSONList(await retrieveJSONList());
+}
+
+export function getNearestDate(list){
+    list = sortJSONList(list);
+    let len = list.length;
 
     if (len === 0 || len === 1){
-        return rJL;
+        return list;
     } else {
 
         // get the smallest date
-        let smoldate = rJL[0].date;
-        let retlist = [rJL[0]];
+        let smoldate = list[0].date;
+        let retlist = [list[0]];
 
         for (var i=1; i<len; i++){
-            if (rJL[i].date === smoldate) retlist.push(rJL[i]);
+            if (list[i].date === smoldate) retlist.push(list[i]);
             else break;
         }
 
         return retlist;
     }
+}
+
+export async function retrieveNearestDate(){
+    return getNearestDate(await retrieveJSONList());
 }

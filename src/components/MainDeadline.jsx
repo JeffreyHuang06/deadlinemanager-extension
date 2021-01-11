@@ -1,14 +1,20 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import '../css/MeadDeadline.css'
-import {retrieveNearestDate} from '../chromeAPI/retrieveDeadlineJSON'
+import {getNearestDate} from '../chromeAPI/retrieveDeadlineJSON'
+
+import DeadlineList from '../atoms/deadlinelist'
+import {useRecoilValue} from 'recoil'
 
 export default function MainDeadline() {
     // get the date and the stuff from chrome storage
     const [school, setSchool] = useState("");
     const [date, setDate] = useState("");
+    let [deadlinelist, setDeadlineList] = useRecoilValue(DeadlineList);
 
-    function updateState(nearest) {
+    useEffect(() => {
+        const nearest = getNearestDate(deadlinelist);
         const len = nearest.length;
+
         if (len === 0){
             setSchool("No schools registered");
             setDate("");
@@ -19,18 +25,10 @@ export default function MainDeadline() {
             
         } else {
             // we need to render a lot of stuff
+            console.log("error");
         }
-    }
 
-    async function fetchData() {
-        let nearest = await retrieveNearestDate();
-        
-        updateState(nearest); 
-    };
-
-    function keepfetching(){
-        setInterval(fetchData, 1500);
-    }
+    }, [deadlinelist]);
 
     return (
         <>
@@ -38,8 +36,6 @@ export default function MainDeadline() {
                 <div className='school'>{school}</div>
                 <div classNmae='date'>{date}</div>
             </div>
-
-            {keepfetching()}
         </>
     )
 }

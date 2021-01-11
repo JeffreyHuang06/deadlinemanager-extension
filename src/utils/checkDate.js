@@ -1,4 +1,4 @@
-export function checkDate(date){
+export default function checkDate(date){
     let d = new Date(date);
     let fixeddate = new Date(
         d.getFullYear(),
