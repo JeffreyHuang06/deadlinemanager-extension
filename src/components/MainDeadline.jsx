@@ -3,15 +3,18 @@ import '../css/MeadDeadline.css'
 import {getNearestDate} from '../chromeAPI/retrieveDeadlineJSON'
 
 import DeadlineList from '../atoms/deadlinelist'
-import {useRecoilValue} from 'recoil'
+import SchoolList from '../atoms/schoollist'
+import {useRecoilState} from 'recoil'
 
 export default function MainDeadline() {
     // get the date and the stuff from chrome storage
     const [school, setSchool] = useState("");
     const [date, setDate] = useState("");
-    let [deadlinelist, setDeadlineList] = useRecoilValue(DeadlineList);
+    const [deadlinelist, setDeadlineList] = useRecoilState(DeadlineList);
+    const [schoollist, setSchoolList] = useRecoilState(SchoolList);
 
     useEffect(() => {
+        console.log(deadlinelist, "effected maindeadline");
         const nearest = getNearestDate(deadlinelist);
         const len = nearest.length;
 
@@ -28,13 +31,17 @@ export default function MainDeadline() {
             console.log("error");
         }
 
-    }, [deadlinelist]);
+    }, [deadlinelist, schoollist]);
+
+    useEffect(() => {
+        console.log("effecttee d");
+    });
 
     return (
         <>
             <div className="MainDeadline">
                 <div className='school'>{school}</div>
-                <div classNmae='date'>{date}</div>
+                <div className='date'>{date}</div>
             </div>
         </>
     )

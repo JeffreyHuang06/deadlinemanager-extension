@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import '../css/InputForm.css'
 import checkList from '../utils/checkList'
 import checkDate from '../utils/checkDate'
-import {storeNewDeadline} from '../chromeAPI/storeNewDeadline'
+import {storeLists} from '../chromeAPI/storeNewDeadline'
 
 import {useRecoilState} from 'recoil'
 import DeadlineList from '../atoms/deadlinelist'
@@ -48,8 +48,7 @@ export default function InputForm () {
         
         // validate the form
         if (validateForm()){
-            storeNewDeadline(inputschool, inputdate);
-
+            console.log(deadlinelist, schoollist, "before");
             // change schoollist state
             let slist = schoollist;
             slist.push(inputschool);
@@ -63,7 +62,10 @@ export default function InputForm () {
             });
             setDeadlineList(dlist);
 
-            console.log(deadlinelist, schoollist);
+            console.log(deadlinelist, schoollist, " mid");
+            storeLists(deadlinelist, schoollist);
+
+            console.log(deadlinelist, schoollist, "after");
         }
     }
 
