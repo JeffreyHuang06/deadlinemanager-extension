@@ -7,9 +7,3 @@ export function retrieveSchoolList(){
     });
 }
 
-// returns true if its not in the list else false
-export async function checkList(schoolname){
-    let res = await retrieveSchoolList();
-
-    return res.find(element => element === schoolname) === undefined;
-}
