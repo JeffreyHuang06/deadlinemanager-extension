@@ -5,8 +5,8 @@ import {retrieveSortedJSONList} from './chromeAPI/retrieveDeadlineJSON'
 import {retrieveSchoolList} from './chromeAPI/retrieveSchoolList'
 
 import {useSetRecoilState} from 'recoil'
-import DeadlineList from './atoms/deadlinelist'
-import SchoolList from './atoms/schoollist'
+import DeadlineList from './states/deadlinelist'
+import SchoolList from './states/schoollist'
 // make all componets classes expect for those that useState
 // then use the <App /> to handle ALL STATE because it's all intertwined. I'm probably gonna put this on my big monitor
 
@@ -31,8 +31,8 @@ export default function App() {
 
   return (
     <div className="App">
-      <MainDeadline />
       <InputForm />
+      <MainDeadline />
     </div>
   );
 }
