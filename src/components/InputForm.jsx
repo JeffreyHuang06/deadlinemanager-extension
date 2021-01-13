@@ -3,10 +3,11 @@ import '../css/InputForm.css'
 import checkList from '../utils/checkList'
 import checkDate from '../utils/checkDate'
 import {storeLists} from '../chromeAPI/storeNewDeadline'
+import removeDupes from '../utils/removeDupes'
 
 import {useRecoilState} from 'recoil'
-import DeadlineList from '../atoms/deadlinelist'
-import SchoolList from '../atoms/schoollist'
+import DeadlineList from '../states/deadlinelist'
+import SchoolList from '../states/schoollist'
 
 export default function InputForm () {
     const [inputschool, setInputSchool] = useState('');
@@ -52,6 +53,7 @@ export default function InputForm () {
             // change schoollist state
             let slist = schoollist;
             slist.push(inputschool);
+            slist = removeDupes(slist);
             setSchoolList(slist);
 
             // change deadlinelist state
@@ -60,6 +62,7 @@ export default function InputForm () {
                 "school": inputschool,
                 "date": inputdate
             });
+            dlist = removeDupes(dlist);
             setDeadlineList(dlist);
 
             console.log(deadlinelist, schoollist, " mid");
