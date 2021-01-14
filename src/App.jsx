@@ -15,16 +15,14 @@ export default function App() {
   const setSchoolList = useSetRecoilState(SchoolList);
 
   useEffect(() => {
-    (
-      async() => {
-        let res = await retrieveSortedJSONList();
-        console.log(res, "res");
-        setDeadlineList(res);
+    
+    retrieveSortedJSONList().then(res => {
+      setDeadlineList(res);
+    });
 
-        res = await retrieveSchoolList();
-        setSchoolList(res);
-      }
-    )();
+    retrieveSchoolList().then(res => {
+      setSchoolList(res);
+    });
   
   // eslint-disable-next-line
   }, []);
