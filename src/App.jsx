@@ -1,6 +1,8 @@
 import React, {useEffect} from 'react';
 import MainDeadline from './components/MainDeadline'
 import InputForm from './components/InputForm'
+import SchoolListDisp from './components/SchoolListDisp'
+
 import {retrieveSortedJSONList} from './chromeAPI/retrieveDeadlineJSON'
 import {retrieveSchoolList} from './chromeAPI/retrieveSchoolList'
 
@@ -15,7 +17,7 @@ export default function App() {
   const setSchoolList = useSetRecoilState(SchoolList);
 
   useEffect(() => {
-    
+
     retrieveSortedJSONList().then(res => {
       setDeadlineList(res);
     });
@@ -31,6 +33,7 @@ export default function App() {
     <div className="App">
       <InputForm />
       <MainDeadline />
+      <SchoolListDisp />
     </div>
   );
 }
