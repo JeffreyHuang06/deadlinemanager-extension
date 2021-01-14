@@ -44,6 +44,3 @@ export function getNearestDate(list){
     }
 }
 
-export async function retrieveNearestDate(){
-    return getNearestDate(await retrieveJSONList());
-}
