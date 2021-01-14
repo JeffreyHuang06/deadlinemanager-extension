@@ -1,7 +1,7 @@
 {
   "name": "Deadline Manager",
-  "version": "1.0",
-  "description": "Build an Extension!",
+  "version": "1.0.0",
+  "description": "Manage your deadlines so you don't forget them!",
   "permissions": ["storage"],
   "chrome_url_overrides" : {
     "newtab": "index.html"
