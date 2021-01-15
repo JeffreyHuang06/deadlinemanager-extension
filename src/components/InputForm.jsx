@@ -3,7 +3,6 @@ import '../css/InputForm.css'
 import checkList from '../utils/checkList'
 import checkDate from '../utils/checkDate'
 import {storeLists} from '../chromeAPI/storeNewDeadline'
-import removeDupes from '../utils/removeDupes'
 
 import {useRecoilState} from 'recoil'
 import DeadlineList from '../states/deadlinelist'
@@ -51,7 +50,7 @@ export default function InputForm () {
         if (validateForm()) {
 
             console.log(deadlinelist, schoollist, "before");
-            
+
             // change schoollist state
             let slist = schoollist.slice();
             slist.push(inputschool);

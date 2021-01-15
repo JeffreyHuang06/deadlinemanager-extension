@@ -1,8 +1,12 @@
 import React from 'react'
 
-export default function SchoolDisp(props) {
-    const {school, date, showDate} = props;
+interface Props {
+    school: string;
+    date: string;
+    showDate: boolean;
+}
 
+const SchoolDisp: React.FC<Props> = ({school, date, showDate}) => {
     // add some css so that these two are horizontal
 
     return (
@@ -16,3 +20,4 @@ export default function SchoolDisp(props) {
     )
 }
 
+export default SchoolDisp;

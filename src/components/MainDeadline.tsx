@@ -3,12 +3,14 @@ import '../css/MainDeadline.css'
 import MainOne from './mains/MainOne'
 import _ from "underscore"
 
+import NearestDateType from '../types/nearestdateType'
+
 import {useRecoilValue} from 'recoil'
 import NearestDate from '../states/nearestdate'
 
 const MainDeadline: React.FC = () => {
     // get the date and the stuff from chrome storage
-    const {schools, dates} = useRecoilValue(NearestDate);
+    const {schools, dates} = useRecoilValue<NearestDateType>(NearestDate);
     const [autos, setAutos] = useState<string>("");
 
     // render on whether its 0,1,error or an array

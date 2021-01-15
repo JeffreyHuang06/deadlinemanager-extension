@@ -12,7 +12,7 @@ import SchoolList from './states/schoollist'
 // make all componets classes expect for those that useState
 // then use the <App /> to handle ALL STATE because it's all intertwined. I'm probably gonna put this on my big monitor
 
-export default function App() {
+const App = () => {
   const setDeadlineList = useSetRecoilState(DeadlineList);
   const setSchoolList = useSetRecoilState(SchoolList);
 
@@ -37,3 +37,5 @@ export default function App() {
     </div>
   );
 }
+
+export default App;
