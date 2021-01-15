@@ -41,34 +41,35 @@ export default function InputForm () {
             setBadDate("");
         }
 
-        return !invalidschool && !invaliddate; // want both to be valid
+        return valschool && valdate; // want both to be valid
     }
 
-    const handleSubmit = async(event) => {
+    const handleSubmit = event => {
         event.preventDefault();
         
         // validate the form
-        if (validateForm()){
+        if (validateForm()) {
+
             console.log(deadlinelist, schoollist, "before");
+            
             // change schoollist state
-            let slist = schoollist;
+            let slist = schoollist.slice();
             slist.push(inputschool);
-            slist = removeDupes(slist);
+            // slist = removeDupes(slist);
             setSchoolList(slist);
 
             // change deadlinelist state
-            let dlist = deadlinelist;
+            let dlist = deadlinelist.slice();
             dlist.push({
                 "school": inputschool,
                 "date": inputdate
             });
-            dlist = removeDupes(dlist);
+            // console.log(dlist, "dlsit before");
+            // dlist = removeDupes(dlist);
+            // console.log(dlist, "dlist sanitized");
             setDeadlineList(dlist);
 
-            console.log(deadlinelist, schoollist, " mid");
-            storeLists(deadlinelist, schoollist);
-
-            console.log(deadlinelist, schoollist, "after");
+            storeLists(deadlinelist, schoollist); // turn this into a selector
         }
     }
 
