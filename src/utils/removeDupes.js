@@ -1,3 +1,5 @@
+// doesnt work for objects
 export default function removeDupes(list){
-    return list.filter((v, i, a) => a.indexOf(v) === i);
+    let tempSet = new Set(list);
+    return Array.from(tempSet);
 }
