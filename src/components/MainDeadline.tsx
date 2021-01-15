@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import '../css/MeadDeadline.css'
+import '../css/MainDeadline.css'
 import MainOne from './mains/MainOne'
 import _ from "underscore"
 
