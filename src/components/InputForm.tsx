@@ -4,24 +4,26 @@ import checkList from '../utils/checkList'
 import checkDate from '../utils/checkDate'
 import {storeLists} from '../chromeAPI/storeNewDeadline'
 
+import DeadlineType from '../types/deadlineType'
+
 import {useRecoilState} from 'recoil'
-import DeadlineList from '../states/deadlinelist'
-import SchoolList from '../states/schoollist'
+import DeadlineList from '../states/deadlinelistAtom'
+import SchoolList from '../states/schoollistAtom'
 
-export default function InputForm () {
-    const [inputschool, setInputSchool] = useState('');
-    const [inputdate, setInputDate] = useState('');
-    const [invalidschool, setInvalidSchool] = useState(false);
-    const [invaliddate, setInvalidDate] = useState(false);
-    const [badschool, setBadSchool] = useState('');
-    const [baddate, setBadDate] = useState('');
+const InputForm: React.FC = () => {
+    const [inputschool, setInputSchool] = useState<string>('');
+    const [inputdate, setInputDate] = useState<string>('');
+    const [invalidschool, setInvalidSchool] = useState<boolean>(false);
+    const [invaliddate, setInvalidDate] = useState<boolean>(false);
+    const [badschool, setBadSchool] = useState<string>('');
+    const [baddate, setBadDate] = useState<string>('');
 
-    const [schoollist, setSchoolList] = useRecoilState(SchoolList);
-    const [deadlinelist, setDeadlineList] = useRecoilState(DeadlineList);
+    const [schoollist, setSchoolList] = useRecoilState<string[]>(SchoolList);
+    const [deadlinelist, setDeadlineList] = useRecoilState<DeadlineType[]>(DeadlineList);
 
-    const validateForm = () => {
+    const validateForm = (): boolean => {
         // check to make sure its not in the list
-        const valschool = checkList(schoollist, inputschool);
+        const valschool: boolean = checkList(schoollist, inputschool);
         if (!valschool){
             setInvalidSchool(true);
             setBadSchool(inputschool);
@@ -30,7 +32,7 @@ export default function InputForm () {
             setBadSchool("");
         }
         // check to make sure the date hasnt been reached yet
-        const valdate = checkDate(inputdate);
+        const valdate: boolean = checkDate(inputdate);
         if (!valdate){ // add MSIN1DAY becauase the day value is 0 indexed so conflicts with Date() and date input
             setInvalidDate(true);
             setBadDate(inputdate);
@@ -43,7 +45,7 @@ export default function InputForm () {
         return valschool && valdate; // want both to be valid
     }
 
-    const handleSubmit = event => {
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         
         // validate the form
@@ -52,27 +54,24 @@ export default function InputForm () {
             console.log(deadlinelist, schoollist, "before");
 
             // change schoollist state
-            let slist = schoollist.slice();
+            let slist: string[] = schoollist.slice();
             slist.push(inputschool);
-            // slist = removeDupes(slist);
             setSchoolList(slist);
 
             // change deadlinelist state
-            let dlist = deadlinelist.slice();
+            let dlist: DeadlineType[] = deadlinelist.slice();
             dlist.push({
                 "school": inputschool,
                 "date": inputdate
             });
-            // console.log(dlist, "dlsit before");
-            // dlist = removeDupes(dlist);
-            // console.log(dlist, "dlist sanitized");
+
             setDeadlineList(dlist);
 
             storeLists(deadlinelist, schoollist); // turn this into a selector
         }
     }
 
-    const handleChange = (event, fieldname) => {
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>, fieldname: string) => {
         switch (fieldname) {
             case "inputschool":
                 setInputSchool(event.target.value);
@@ -121,3 +120,5 @@ export default function InputForm () {
         </form>
     )
 }
+
+export default InputForm;

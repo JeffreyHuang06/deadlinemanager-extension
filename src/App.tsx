@@ -7,8 +7,8 @@ import {retrieveSortedJSONList} from './chromeAPI/retrieveDeadlineJSON'
 import {retrieveSchoolList} from './chromeAPI/retrieveSchoolList'
 
 import {useSetRecoilState} from 'recoil'
-import DeadlineList from './states/deadlinelist'
-import SchoolList from './states/schoollist'
+import DeadlineList from './states/deadlinelistAtom'
+import SchoolList from './states/schoollistAtom'
 // make all componets classes expect for those that useState
 // then use the <App /> to handle ALL STATE because it's all intertwined. I'm probably gonna put this on my big monitor
 

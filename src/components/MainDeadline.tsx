@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import '../css/MainDeadline.css'
-import MainOne from './mains/MainOne'
+import MainOne from './MainOne'
 import _ from "underscore"
 
 import NearestDateType from '../types/nearestdateType'

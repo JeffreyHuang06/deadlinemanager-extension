@@ -1,6 +1,8 @@
 import {atom} from 'recoil'
 
-const DeadlineList = atom({
+import DeadlineType from '../types/deadlineType'
+
+const DeadlineList = atom<DeadlineType[]>({
     key: "deadlinelist",
     default: []
 }); 

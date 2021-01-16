@@ -1,5 +1,5 @@
 import {selector} from 'recoil'
-import DeadlineList from './deadlinelist'
+import DeadlineList from './deadlinelistAtom'
 import {getNearestDate} from '../chromeAPI/retrieveDeadlineJSON'
 import NearestDateType from '../types/nearestdateType'
 import { RecoilValueReadOnly } from 'recoil';

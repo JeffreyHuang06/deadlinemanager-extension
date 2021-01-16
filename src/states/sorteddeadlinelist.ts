@@ -3,7 +3,7 @@ import {sortJSONList} from '../chromeAPI/retrieveDeadlineJSON'
 import DeadlineType from '../types/deadlineType'
 
 import {selector} from 'recoil'
-import DeadlineList from './deadlinelist'
+import DeadlineList from './deadlinelistAtom'
 import { RecoilValueReadOnly } from 'recoil';
 
 // give this a set command in order to add values
