@@ -1,13 +1,9 @@
+import { parse } from 'date-format-parse' 
+
 export default function checkDate(date){
-    let d = new Date(date);
-    let fixeddate = new Date(
-        d.getFullYear(),
-        d.getMonth(),
-        d.getDate() + 1, // because its 0 indexed
-        23,
-        59,
-        59
-    );
+
+    const dstring = date.split(' ')[0];
+    const fixeddate = parse(`${dstring} 23:59:59`, "YYYY-MM-DD HH:mm:ss");
 
     return fixeddate.getTime() >= Date.now();
 }

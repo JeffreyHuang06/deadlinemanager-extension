@@ -23,7 +23,9 @@ const MainDeadline: React.FC = () => {
         const autostring: string = "auto ".repeat(siz);
 
         setAutos(autostring);
-    }, [elems]);
+
+        console.log("effectedddd");
+    }, [schools, dates]);
 
     return (
         <div className="MainDeadline">

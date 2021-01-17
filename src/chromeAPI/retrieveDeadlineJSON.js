@@ -1,4 +1,6 @@
 /*global chrome*/
+import checkDate from '../utils/checkDate'
+
 export function retrieveJSONList() {
     return new Promise(resolve => {
         chrome.storage.sync.get(['deadlinelist'], res => {
@@ -27,15 +29,30 @@ export function getNearestDate(list){
     list = sortJSONList(list);
     let len = list.length;
 
+    console.log(list, "list");
+
     if (len === 0 || len === 1){
         return list;
     } else {
 
-        // get the smallest date
-        let smoldate = list[0].date;
-        let retlist = [list[0]];
+        // get the first index that satisfies
+        let ind;
+        let found = false;
+        for (ind = 0; ind < len; ind++){
+            if (checkDate(list[ind].date)){
+                found = true;
+                break;
+            }
+        }
+        if (!found){
+            return [];
+        }
 
-        for (var i=1; i<len; i++){
+        // get the smallest date
+        let smoldate = list[ind].date;
+        let retlist = [list[ind]];
+
+        for (var i=ind+1; i<len; i++){
             if (list[i].date === smoldate) retlist.push(list[i]);
             else break;
         }
