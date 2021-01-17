@@ -3,14 +3,15 @@ import SchoolDisp from './SchoolDisp'
 
 import DeadlineType from '../types/deadlineType'
 
-import {useRecoilValue} from 'recoil'
+import {useRecoilValue, useRecoilState} from 'recoil'
 import SortedDeadlineList from '../states/sorteddeadlinelist'
+import ShowComplete from '../states/showcompleteAtom'
 
 // this component can either show or not show dates
 const SchoolListDisp: React.FC = () => {
     const sorteddeadlinelist = useRecoilValue<DeadlineType[]>(SortedDeadlineList);
     const [showDates, setShowDates] = useState<boolean>(false);
-    const [showComplete, setShowComplete] = useState<boolean>(true);
+    const [showComplete, setShowComplete] = useRecoilState<boolean>(ShowComplete);
 
     const toggleDates = () => {
         setShowDates(!showDates);
