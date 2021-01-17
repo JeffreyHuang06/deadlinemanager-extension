@@ -4,10 +4,12 @@ import MainOne from './MainOne'
 
 import {useRecoilValue} from 'recoil'
 import NearestDate from '../states/nearestdate'
+import ShowComplete from '../states/showcompleteAtom'
 
 const MainDeadline: React.FC = () => {
     // get the date and the stuff from chrome storage
     const schooldates = useRecoilValue<string[][]>(NearestDate);
+    const showComplete = useRecoilValue<boolean>(ShowComplete);
     const [autos, setAutos] = useState<string>("");
 
     //dynamically render the style
@@ -20,6 +22,8 @@ const MainDeadline: React.FC = () => {
 
     }, [schooldates]);
 
+    // NOTE: add the ability to show completeness on the MainOne, therefore many the showComplete an atom
+
     return (
         <div className="MainDeadline">
             <style jsx>{`
@@ -31,7 +35,7 @@ const MainDeadline: React.FC = () => {
 
             {
                 schooldates.map(([school, date]) => (
-                    <MainOne school={school} date={date} />
+                    <MainOne school={school} date={date} showComplete={showComplete} />
                 ))
             }
         </div>
