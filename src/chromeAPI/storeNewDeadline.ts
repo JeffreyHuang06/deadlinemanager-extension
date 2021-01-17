@@ -1,7 +1,8 @@
 /*global chrome*/
 import {retrieveJSONList} from './retrieveDeadlineJSON'
 import {retrieveSchoolList} from './retrieveSchoolList'
-import removeDupes from '../utils/removeDupes'
+
+import DeadlineType from '../types/deadlineType'
 
 export async function storeNewDeadline(school: string, date: string){
     // first we need to get it
@@ -23,12 +24,10 @@ export async function storeNewDeadline(school: string, date: string){
     });
 }
 
-export async function storeLists(deadlinelist: any, schoollist: any){ // reformat types later
-    deadlinelist = removeDupes(deadlinelist);
-    schoollist = removeDupes(schoollist);
+export async function storeLists(deadlinelist: DeadlineType[], schoollist: string[]){
+    // deadlinelist = removeDupes(deadlinelist);
+    // schoollist = removeDupes(schoollist);
 
-    console.log(deadlinelist, schoollist, "diupes");
-    //@ts-ignore
     chrome.storage.sync.set({
         "deadlinelist": deadlinelist,
         "schoollist": schoollist

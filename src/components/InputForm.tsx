@@ -51,8 +51,6 @@ const InputForm: React.FC = () => {
         // validate the form
         if (validateForm()) {
 
-            console.log(deadlinelist, schoollist, "before");
-
             // change schoollist state
             let slist: string[] = schoollist.slice();
             slist.push(inputschool);
@@ -67,7 +65,7 @@ const InputForm: React.FC = () => {
 
             setDeadlineList(dlist);
 
-            storeLists(deadlinelist, schoollist); // turn this into a selector
+            storeLists(dlist, slist); // turn this into a selector
         }
     }
 
