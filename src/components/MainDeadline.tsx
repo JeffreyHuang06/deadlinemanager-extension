@@ -13,7 +13,7 @@ const MainDeadline: React.FC = () => {
     //dynamically render the style
 
     useEffect(() => {
-        const siz: number = Math.round(Math.sqrt(schooldates.length));
+        const siz: number = Math.ceil(Math.sqrt(schooldates.length));
         const autostring: string = "auto ".repeat(siz);
 
         setAutos(autostring);
