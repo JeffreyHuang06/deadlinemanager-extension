@@ -5,28 +5,36 @@ import SchoolListDisp from './components/SchoolListDisp'
 
 import {retrieveSortedJSONList} from './chromeAPI/retrieveDeadlineJSON'
 import {retrieveSchoolList} from './chromeAPI/retrieveSchoolList'
+import {retrieveSchoolStateList} from './chromeAPI/retrieveSchoolStateList'
+
+import DeadlineType from './types/deadlineType'
 
 import {useSetRecoilState} from 'recoil'
 import DeadlineList from './states/deadlinelistAtom'
 import SchoolList from './states/schoollistAtom'
+import SchoolStateList from './states/schoolstatelistAtom'
 // make all componets classes expect for those that useState
 // then use the <App /> to handle ALL STATE because it's all intertwined. I'm probably gonna put this on my big monitor
 
 const App = () => {
   const setDeadlineList = useSetRecoilState(DeadlineList);
   const setSchoolList = useSetRecoilState(SchoolList);
+  const setSchoolStateList = useSetRecoilState<any>(SchoolStateList);
+
+  const getAtoms = async() => {
+    const res1: DeadlineType[] = await retrieveSortedJSONList();
+    const res2: string[] = await retrieveSchoolList();
+    const res3 = await retrieveSchoolStateList();
+
+    setDeadlineList(res1);
+    setSchoolList(res2);
+    setSchoolStateList(res3);
+  }
 
   useEffect(() => {
+    getAtoms();
 
-    retrieveSortedJSONList().then(res => {
-      setDeadlineList(res);
-    });
-
-    retrieveSchoolList().then(res => {
-      setSchoolList(res);
-    });
-  
-  // eslint-disable-next-line
+  //eslint-disable-next-line
   }, []);
 
   return (

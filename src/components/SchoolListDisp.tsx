@@ -10,20 +10,27 @@ import SortedDeadlineList from '../states/sorteddeadlinelist'
 const SchoolListDisp: React.FC = () => {
     const sorteddeadlinelist = useRecoilValue<DeadlineType[]>(SortedDeadlineList);
     const [showDates, setShowDates] = useState<boolean>(false);
+    const [showComplete, setShowComplete] = useState<boolean>(true);
 
-    const toggle = () => {
+    const toggleDates = () => {
         setShowDates(!showDates);
+    }
+
+    const toggleComplete = () => {
+        setShowComplete(!showComplete);
     }
 
     return (
         <div className='SchoolListDisp'>
-            <button onClick={toggle}>Toggle Dates</button>
+            <button onClick={toggleDates}>Toggle Dates</button>
+            <button onClick={toggleComplete}>Toggle Complete</button>
 
             {
                 sorteddeadlinelist.map(({school, date}) => (
-                    <SchoolDisp school={school} date={date} showDate={showDates}/>
+                    <SchoolDisp school={school} date={date} showDate={showDates} showComplete={showComplete}/>
                 ))
             }
+
         </div>
     );
 }
