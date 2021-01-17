@@ -21,6 +21,11 @@ chrome.runtime.onInstalled.addListener(function() {
         "Andover"
     ];
 
+    let ddlistbools_temp_obj = {
+        "Exeter": true,
+        "Andover": false
+    };
+
     // yes I know this architecture and system for storing is terrible but ill fix it later
 
     chrome.storage.sync.set({deadlinelist: ddlist_temp_obj}, () => {
@@ -29,8 +34,13 @@ chrome.runtime.onInstalled.addListener(function() {
     });
 
     chrome.storage.sync.set({schoollist: ddlistnames_temp_obj}, () => {
-        console.log("Successfully instantiated deadlinelistnames");
+        console.log("Successfully instantiated schoollist");
         console.log(ddlistnames_temp_obj);
+    });
+
+    chrome.storage.sync.set({schoolstatelist: ddlistbools_temp_obj}, () => {
+        console.log("Successfully instantiated schoolstatelist");
+        console.log(ddlistbools_temp_obj);
     });
 });
 
