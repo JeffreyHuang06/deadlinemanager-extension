@@ -1,31 +1,24 @@
 import React, {useState, useEffect} from 'react'
 import '../css/MainDeadline.css'
 import MainOne from './MainOne'
-import _ from "underscore"
-
-import NearestDateType from '../types/nearestdateType'
 
 import {useRecoilValue} from 'recoil'
 import NearestDate from '../states/nearestdate'
 
 const MainDeadline: React.FC = () => {
     // get the date and the stuff from chrome storage
-    const {schools, dates} = useRecoilValue<NearestDateType>(NearestDate);
+    const schooldates = useRecoilValue<string[][]>(NearestDate);
     const [autos, setAutos] = useState<string>("");
-
-    // render on whether its 0,1,error or an array
-    const elems: string[][] = _.zip(schools, dates);
 
     //dynamically render the style
 
     useEffect(() => {
-        const siz: number = Math.round(Math.sqrt(elems.length));
+        const siz: number = Math.round(Math.sqrt(schooldates.length));
         const autostring: string = "auto ".repeat(siz);
 
         setAutos(autostring);
 
-        console.log("effectedddd");
-    }, [schools, dates]);
+    }, [schooldates]);
 
     return (
         <div className="MainDeadline">
@@ -37,7 +30,7 @@ const MainDeadline: React.FC = () => {
             `}</style>
 
             {
-                elems.map(([school, date]) => (
+                schooldates.map(([school, date]) => (
                     <MainOne school={school} date={date} />
                 ))
             }

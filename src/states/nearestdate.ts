@@ -1,10 +1,10 @@
 import {selector} from 'recoil'
 import DeadlineList from './deadlinelistAtom'
 import {getNearestDate} from '../chromeAPI/retrieveDeadlineJSON'
-import NearestDateType from '../types/nearestdateType'
 import { RecoilValueReadOnly } from 'recoil';
+import _ from 'underscore'
 
-const NearestDate: RecoilValueReadOnly<NearestDateType> = selector({
+const NearestDate: RecoilValueReadOnly<string[][]> = selector({
     key: "nearestdate",
     get: ({get}) => {
 
@@ -39,10 +39,7 @@ const NearestDate: RecoilValueReadOnly<NearestDateType> = selector({
             dates = ["error"];
         }
 
-        return {
-            schools,
-            dates
-        };
+        return _.zip(schools, dates);
     }
 });
 
