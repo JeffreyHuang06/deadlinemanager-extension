@@ -24,12 +24,13 @@ export async function storeNewDeadline(school: string, date: string){
     });
 }
 
-export async function storeLists(deadlinelist: DeadlineType[], schoollist: string[]){
+export async function storeLists(deadlinelist: DeadlineType[], schoollist: string[], schoolstatelist: any){
     // deadlinelist = removeDupes(deadlinelist);
     // schoollist = removeDupes(schoollist);
 
     chrome.storage.sync.set({
         "deadlinelist": deadlinelist,
-        "schoollist": schoollist
+        "schoollist": schoollist,
+        "schoolstatelist": schoolstatelist
     });
 }
