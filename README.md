@@ -9,3 +9,6 @@ Chrome link:
 <i>Hell, I'm procrastinating my essays by building this soo........</i>
 <br>
 this is my first react project so do not judge me harshly on all my terrible code
+<br>
+<br>
+NOTE: <strong>THANK GOD I USED REACT AND RECOIL IT MADE MANAGING STATE SO MUCH EASIER</strong>
