@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 
-import SB from '../types/hashmapsb'
+import clone from '../utils/cloneObj'
 
 import {useRecoilState} from 'recoil'
 import SchoolStateList from '../states/schoolstatelistAtom'
@@ -12,17 +12,17 @@ interface Props {
 }
 
 const MainOne: React.FC<Props> = ({school, date, showComplete}) => {
-    const [schoolstatelist, setSchoolStateList] = useRecoilState<SB>(SchoolStateList);
+    const [schoolstatelist, setSchoolStateList] = useRecoilState<any>(SchoolStateList);
     const [schoolstatestring, setSchoolStateString] = useState("");
 
     const toggleComplete = () => {
-        const schoolstatelistU: SB = schoolstatelist.clone();
-        schoolstatelistU.s(school, !schoolstatelist._(school));
+        let schoolstatelistU = clone(schoolstatelist);
+        schoolstatelistU[school] = !schoolstatelist[school];
         setSchoolStateList(schoolstatelistU);
     }
 
     useEffect(() => {
-        setSchoolStateString(schoolstatelist._(school) ? "Completed" : "Uncompleted");
+        setSchoolStateString(schoolstatelist[school] ? "Completed" : "Uncompleted");
 
     //eslint-disable-next-line
     }, [schoolstatelist])
