@@ -1,5 +1,4 @@
 import React from 'react';
-import 'react-devtools'
 import ReactDOM from 'react-dom';
 import App from './App';
 import { RecoilRoot } from 'recoil'

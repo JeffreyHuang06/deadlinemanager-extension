@@ -23,9 +23,7 @@
     "build": "react-scripts build",
     "fast": "GENERATE_SOURCEMAP=false react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "build:dev": "dotenv -e .env.development react-scripts build",
-    "react-devtools": "react-devtools"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
@@ -51,8 +49,6 @@
     "@types/react-dom": "^17.0.0",
     "@types/recoil": "0.0.1",
     "@types/styled-jsx": "^2.2.8",
-    "@types/underscore": "^1.10.24",
-    "dotenv-cli": "^4.0.0",
-    "react-devtools": "^4.10.1"
+    "@types/underscore": "^1.10.24"
   }
 }
