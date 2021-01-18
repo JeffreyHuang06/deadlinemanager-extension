@@ -3,7 +3,6 @@ import {retrieveJSONList} from './retrieveDeadlineJSON'
 import {retrieveSchoolList} from './retrieveSchoolList'
 
 import DeadlineType from '../types/deadlineType'
-import SB from '../types/hashmapsb'
 
 export async function storeNewDeadline(school: string, date: string){
     // first we need to get it
@@ -25,13 +24,13 @@ export async function storeNewDeadline(school: string, date: string){
     });
 }
 
-export async function storeLists(deadlinelist: DeadlineType[], schoollist: string[], schoolstatelist: SB){
+export async function storeLists(deadlinelist: DeadlineType[], schoollist: string[], schoolstatelist: any){
     // deadlinelist = removeDupes(deadlinelist);
     // schoollist = removeDupes(schoollist);
 
     chrome.storage.sync.set({
         "deadlinelist": deadlinelist,
         "schoollist": schoollist,
-        "schoolstatelist": schoolstatelist.getObj()
+        "schoolstatelist": schoolstatelist
     });
 }
