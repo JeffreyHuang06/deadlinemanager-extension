@@ -8,6 +8,7 @@ import {retrieveSchoolList} from './chromeAPI/retrieveSchoolList'
 import {retrieveSchoolStateList} from './chromeAPI/retrieveSchoolStateList'
 
 import DeadlineType from './types/deadlineType'
+import SB from './types/hashmapsb'
 
 import {useSetRecoilState} from 'recoil'
 import DeadlineList from './states/deadlinelistAtom'
@@ -19,7 +20,7 @@ import SchoolStateList from './states/schoolstatelistAtom'
 const App = () => {
   const setDeadlineList = useSetRecoilState(DeadlineList);
   const setSchoolList = useSetRecoilState(SchoolList);
-  const setSchoolStateList = useSetRecoilState<any>(SchoolStateList);
+  const setSchoolStateList = useSetRecoilState<SB>(SchoolStateList);
 
   const getAtoms = async() => {
     const res1: DeadlineType[] = await retrieveSortedJSONList();
@@ -28,7 +29,7 @@ const App = () => {
 
     setDeadlineList(res1);
     setSchoolList(res2);
-    setSchoolStateList(res3);
+    setSchoolStateList(new SB(res3));
   }
 
   useEffect(() => {
