@@ -1,7 +1,10 @@
-export function retrieveSchoolStateList(){
-    return new Promise(resolve => {
+import SB from '../types/hashmapsb'
+
+export function retrieveSchoolStateList(): Promise<SB> {
+    return new Promise<SB>(resolve => {
         chrome.storage.sync.get(['schoolstatelist'], res => {
-            resolve(res.schoolstatelist);
+            const ret = new SB(res.schoolstatelist);
+            resolve(ret);
         });
     });
 };

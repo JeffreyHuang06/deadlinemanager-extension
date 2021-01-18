@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react'
-import clone from '../utils/cloneObj'
 
 import {useRecoilState} from 'recoil'
 import SchoolStateList from '../states/schoolstatelistAtom'
+import SB from '../types/hashmapsb'
 
 interface Props {
     school: string;
@@ -14,17 +14,17 @@ interface Props {
 const SchoolDisp: React.FC<Props> = ({school, date, showDate, showComplete}) => {
     // add some css so that these two are horizontal
 
-    const [schoolstatelist, setSchoolStateList] = useRecoilState<any>(SchoolStateList);
+    const [schoolstatelist, setSchoolStateList] = useRecoilState<SB>(SchoolStateList);
     const [schoolstatestring, setSchoolStateString] = useState("");
 
     const toggleComplete = () => {
-        let schoolstatelistU = clone(schoolstatelist);
-        schoolstatelistU[school] = !schoolstatelist[school];
+        const schoolstatelistU: SB = schoolstatelist.clone();
+        schoolstatelistU.s(school, !schoolstatelist._(school));
         setSchoolStateList(schoolstatelistU);
     }
 
     useEffect(() => {
-        setSchoolStateString(schoolstatelist[school] ? "Completed" : "Uncompleted");
+        setSchoolStateString(schoolstatelist._(school) ? "Completed" : "Uncompleted");
 
     //eslint-disable-next-line
     }, [schoolstatelist]);
