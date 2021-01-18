@@ -7,7 +7,7 @@ export default class HashMap<K, V> {
     constructor(init: Object = {}){
         // can either be object or hashmap
         if (init instanceof HashMap){
-            this.hmap = new HashMap<K, V>(clone(init.hmap));
+            this.hmap = clone(init.hmap);
         } else {
             this.hmap = init;
         }
