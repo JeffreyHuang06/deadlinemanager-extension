@@ -1,8 +1,10 @@
 import {atom} from 'recoil'
 
-const SchoolStateList = atom({
+import SB from '../types/hashmapsb'
+
+const SchoolStateList = atom<SB>({
     key: "schoolstate",
-    default: []
+    default: new SB()
 });
 
 export default SchoolStateList;

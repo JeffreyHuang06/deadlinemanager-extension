@@ -3,9 +3,9 @@ import '../css/InputForm.css'
 import checkList from '../utils/checkList'
 import checkDate from '../utils/checkDate'
 import {storeLists} from '../chromeAPI/storeNewDeadline'
-import clone from '../utils/cloneObj'
 
 import DeadlineType from '../types/deadlineType'
+import SB from '../types/hashmapsb'
 
 import {useRecoilState} from 'recoil'
 import DeadlineList from '../states/deadlinelistAtom'
@@ -22,7 +22,7 @@ const InputForm: React.FC = () => {
 
     const [schoollist, setSchoolList] = useRecoilState<string[]>(SchoolList);
     const [deadlinelist, setDeadlineList] = useRecoilState<DeadlineType[]>(DeadlineList);
-    const [schoolstatelist, setSchoolStateList] = useRecoilState<any>(SchoolStateList);
+    const [schoolstatelist, setSchoolStateList] = useRecoilState<SB>(SchoolStateList);
 
     const validateForm = (): boolean => {
         // check to make sure its not in the list
@@ -67,8 +67,8 @@ const InputForm: React.FC = () => {
             });
             setDeadlineList(dlist);
 
-            let sslist: any = clone(schoolstatelist);
-            sslist[inputschool] = false;
+            let sslist: SB = schoolstatelist.clone();
+            sslist.s(inputschool, false);
             setSchoolStateList(sslist);
 
             storeLists(dlist, slist, sslist); // turn this into a selector
