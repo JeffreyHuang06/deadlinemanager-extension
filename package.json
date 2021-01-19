@@ -49,6 +49,7 @@
     "@types/react-dom": "^17.0.0",
     "@types/recoil": "0.0.1",
     "@types/styled-jsx": "^2.2.8",
-    "@types/underscore": "^1.10.24"
+    "@types/underscore": "^1.10.24",
+    "sass": "^1.32.4"
   }
 }
