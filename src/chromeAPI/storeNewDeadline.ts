@@ -5,23 +5,9 @@ import {retrieveSchoolList} from './retrieveSchoolList'
 import DeadlineType from '../types/deadlineType'
 import SB from '../types/hashmapsb'
 
-export async function storeNewDeadline(school: string, date: string){
-    // first we need to get it
-    // then we push back
-    // then we do the thing
-    let retrievedDeadlineList = await retrieveJSONList();
-    retrievedDeadlineList.push({
-        "school": school,
-        "date": date
-    });
-
-    let retrievedSchoolList = await retrieveSchoolList();
-    retrievedSchoolList.push(school);
-    
-    //@ts-ignore
+export async function storeSchoolStateList(ssl: SB){
     chrome.storage.sync.set({
-        "deadlinelist": retrievedDeadlineList,
-        "schoollist": retrievedSchoolList
+        "schoolstatelist": ssl.getObj()
     });
 }
 

@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 
+import {storeSchoolStateList} from '../chromeAPI/storeNewDeadline'
 import SB from '../types/hashmapsb'
 
 import {useRecoilState} from 'recoil'
@@ -20,6 +21,9 @@ const MainOne: React.FC<Props> = ({school, date, showComplete}) => {
         const schoolstatelistU: SB = schoolstatelist.clone();
         schoolstatelistU.s(school, !schoolstatelist._(school));
         setSchoolStateList(schoolstatelistU);
+
+        // need a func that updates the chrome storage
+        storeSchoolStateList(schoolstatelistU);
     }
 
     useEffect(() => {

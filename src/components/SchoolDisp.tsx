@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 
+import {storeSchoolStateList} from '../chromeAPI/storeNewDeadline'
 import {useRecoilState} from 'recoil'
 import SchoolStateList from '../states/schoolstatelistAtom'
 import SB from '../types/hashmapsb'
@@ -21,6 +22,8 @@ const SchoolDisp: React.FC<Props> = ({school, date, showDate, showComplete}) => 
         const schoolstatelistU: SB = schoolstatelist.clone();
         schoolstatelistU.s(school, !schoolstatelist._(school));
         setSchoolStateList(schoolstatelistU);
+
+        storeSchoolStateList(schoolstatelistU);
     }
 
     useEffect(() => {
