@@ -13,6 +13,7 @@ interface Props {
 
 const MainOne: React.FC<Props> = ({school, date, showComplete}) => {
     const [schoolstatelist, setSchoolStateList] = useRecoilState<SB>(SchoolStateList);
+    const [isComplete, setIsComplete] = useState<string>("");
     const [schoolstatestring, setSchoolStateString] = useState("");
 
     const toggleComplete = () => {
@@ -22,7 +23,9 @@ const MainOne: React.FC<Props> = ({school, date, showComplete}) => {
     }
 
     useEffect(() => {
-        setSchoolStateString(schoolstatelist._(school) ? "Completed" : "Uncompleted");
+        const complete = schoolstatelist._(school) 
+        setSchoolStateString(complete ? "Completed" : "Uncompleted");
+        setIsComplete(complete ? "#6ee96e" : "#ff4141")
 
     //eslint-disable-next-line
     }, [schoolstatelist])
@@ -30,12 +33,12 @@ const MainOne: React.FC<Props> = ({school, date, showComplete}) => {
 
     return (
         <>
-            <div className="MainOne">
-                <div>{school}</div>
-                <div>{date}</div>
+            <div className="MainOne" style={{background: isComplete}}>
+                <div className='MainOne--school'>{school}</div>
+                <div className='MainOne--date'>{date}</div>
 
                 {
-                    showComplete ? <button onClick={toggleComplete}>{schoolstatestring}</button> : null
+                    showComplete ? <div className='MainOne--button'><button onClick={toggleComplete}>{schoolstatestring}</button></div> : null
                 }
             </div>
         </>

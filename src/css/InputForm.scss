@@ -1,0 +1,16 @@
+$namewidth: 100%;
+$datewidth: 75%;
+$submitwidth: 50%;
+
+.InputForm {
+    width: 200px;
+}
+#inputname {
+    width: $namewidth;
+}
+#inputdate {
+    width: $datewidth;
+}
+#inputsubmit {
+    width: $submitwidth;
+}
