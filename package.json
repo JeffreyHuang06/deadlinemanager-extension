@@ -53,6 +53,7 @@
     "@types/styled-jsx": "^2.2.8",
     "@types/underscore": "^1.10.24",
     "dotenv-cli": "^4.0.0",
-    "react-devtools": "^4.10.1"
+    "react-devtools": "^4.10.1",
+    "sass": "^1.32.4"
   }
 }
