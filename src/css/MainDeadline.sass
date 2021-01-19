@@ -1,0 +1,48 @@
+@use "generic"
+
+$MDeadline-width: 50vw
+$Mone-color: #002451
+// .md-container 
+//     @include generic.rainbow
+//     @include pos
+
+//     border-radius: 2em
+//     transform: translate(-50%, -55%)
+    
+.MainDeadline
+    @include generic.rainbow
+
+    width: $MDeadline-width
+    height: 45vh
+    position: fixed
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -55%)
+    border-radius: 2em
+
+    overflow: hidden
+    padding: 2px 4px
+
+    background-image: linear-gradient(black, black), linear-gradient(to bottom right, #b827fc 0%, #2c90fc 25%, #b8fd33 50%, #fec837 75%, #fd1892 100%)
+
+    // &:after
+    //     backgrond-color: $Mone-color
+
+.MainOne 
+    // background: none
+    color: white
+    border-radius: 2em
+    text-align: center
+    border: white 2px solid
+
+    & > * 
+        display: grid
+        place-items: center
+
+    &--school
+        font-size: 3em
+        height: 25%
+    
+    &--date
+        font-size: 3em
+        height: 50%

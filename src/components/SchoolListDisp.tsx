@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import '../css/SchoolListDisp.scss'
 import SchoolDisp from './SchoolDisp'
 
 import DeadlineType from '../types/deadlineType'
@@ -22,16 +23,18 @@ const SchoolListDisp: React.FC = () => {
     }
 
     return (
-        <div className='SchoolListDisp'>
-            <button onClick={toggleDates}>Toggle Dates</button>
-            <button onClick={toggleComplete}>Toggle Complete</button>
+        <div className="container">
+            <div className='SchoolListDisp'>
+                <button onClick={toggleDates}>Toggle Dates</button>
+                <button onClick={toggleComplete}>Toggle Complete</button>
 
-            {
-                sorteddeadlinelist.map(({school, date}) => (
-                    <SchoolDisp school={school} date={date} showDate={showDates} showComplete={showComplete}/>
-                ))
-            }
+                {
+                    sorteddeadlinelist.map(({school, date}) => (
+                        <SchoolDisp school={school} date={date} showDate={showDates} showComplete={showComplete}/>
+                    ))
+                }
 
+            </div>
         </div>
     );
 }

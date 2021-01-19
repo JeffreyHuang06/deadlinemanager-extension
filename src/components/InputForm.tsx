@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
-import '../css/InputForm.css'
+import '../css/InputForm.scss'
+import '../css/Inputer.scss'
 import checkList from '../utils/checkList'
 import checkDate from '../utils/checkDate'
 import {storeLists} from '../chromeAPI/storeNewDeadline'
@@ -93,20 +94,23 @@ const InputForm: React.FC = () => {
     return (
         <form className='InputForm' onSubmit={handleSubmit}>
             <h3>Enter New School</h3>
+            <br />
 
             <div id='inputname' className='Inputer'>
-                <p>School Name</p>
-                <input 
+                <input
                     type='text'
                     onChange={e => {handleChange(e, 'inputschool')}}
                     value={inputschool}
+                    placeholder="School Name"
                     required 
                 />
+
                 {invalidschool ? <p>{badschool} is already registered</p> : null}
             </div>
 
+            <br />
+
             <div id='inputdate' className='Inputer'>
-                <p>Deadline Date</p>
                 <input
                     type='date'
                     onChange={e => {handleChange(e, 'inputdate')}}
@@ -116,8 +120,9 @@ const InputForm: React.FC = () => {
                 {invaliddate ? <p>{baddate} is invalid</p> : null}
             </div>
 
+            <br />
+
             <div id='inputsubmit' className='Inputer'>
-                <p>Submit</p>
                 <input type='submit' required></input>
             </div>
             

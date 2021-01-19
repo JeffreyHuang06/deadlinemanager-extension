@@ -1,0 +1,25 @@
+@use 'generic';
+
+h3 {
+    @include generic.rainbow;
+    width: 70%;
+    text-align: center;
+    margin: 0 auto;
+}
+
+input {
+    @include generic.rainbow;
+    width: 100%;
+}
+
+input:focus {
+    outline: none;
+}
+
+p {
+    margin: 0 auto;
+}
+
+.Inputer p {
+    text-align: center;
+}

@@ -1,0 +1,29 @@
+@use 'generic';
+@use 'MainDeadline';
+
+$SLD-margin: 2vw;
+$SLD-height: 66vh;
+
+.container {
+    @include generic.rainbow;
+    background-image: linear-gradient(black, black), linear-gradient(to bottom right, #b827fc 0%, #2c90fc 25%, #b8fd33 50%, #fec837 75%, #fd1892 100%);
+    border-radius: 2em;
+
+    position: fixed;
+    right: $SLD-margin;
+    width: (100vw - MainDeadline.$MDeadline-width) / 2 - 2 * $SLD-margin;
+    height: $SLD-height;
+
+    display: grid;
+    place-items: center;;
+}
+
+.SchoolListDisp {
+    position: fixed;
+    right: $SLD-margin;
+    top: inherit;
+    margin-top: $SLD-margin;
+    width: (100vw - MainDeadline.$MDeadline-width) / 2 - 2 * $SLD-margin - $SLD-margin;
+    
+    color: white;
+}

@@ -1,0 +1,15 @@
+// $bg-color: #7b9095
+$bg-color: #000000
+// $bg-color: white
+    
+body 
+    background: $bg-color
+
+@mixin rainbow 
+    border: double 2px transparent
+    border-radius: 5em
+    background-image: linear-gradient(white, white), linear-gradient(to bottom right, #b827fc 0%, #2c90fc 25%, #b8fd33 50%, #fec837 75%, #fd1892 100%)
+    background-origin: border-box
+    background-clip: content-box, border-box
+
+    padding: 1px 2px

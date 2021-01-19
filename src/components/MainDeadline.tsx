@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import '../css/MainDeadline.css'
+import '../css/MainDeadline.sass'
 import MainOne from './MainOne'
 
 import {useRecoilValue} from 'recoil'
@@ -10,15 +10,12 @@ const MainDeadline: React.FC = () => {
     // get the date and the stuff from chrome storage
     const schooldates = useRecoilValue<string[][]>(NearestDate);
     const showComplete = useRecoilValue<boolean>(ShowComplete);
-    const [autos, setAutos] = useState<string>("");
+    const [siz, setSiz] = useState<number>(1);
 
     //dynamically render the style
 
     useEffect(() => {
-        const siz: number = Math.ceil(Math.sqrt(schooldates.length));
-        const autostring: string = "auto ".repeat(siz);
-
-        setAutos(autostring);
+        setSiz(Math.ceil(Math.sqrt(schooldates.length)));
 
     }, [schooldates]);
 
@@ -29,7 +26,11 @@ const MainDeadline: React.FC = () => {
             <style jsx>{`
                 .MainDeadline {
                     display: grid;
-                    grid-template-columns: ${autos}
+                    grid-template-columns: ${"auto ".repeat(siz)}
+                }
+                .MainOne {
+                    width: calc(50vw / ${siz});
+                    height: calc(45vh / ${siz});
                 }
             `}</style>
 
