@@ -11,6 +11,18 @@ export async function storeSchoolStateList(ssl: SB){
     });
 }
 
+export async function storeShowComplete(show: boolean){
+    chrome.storage.sync.set({
+        "showcomplete": show
+    });
+}
+
+export async function storeShowDates(show: boolean){
+    chrome.storage.sync.set({
+        "showdates": show
+    });
+}
+
 export async function storeLists(deadlinelist: DeadlineType[], schoollist: string[], schoolstatelist: SB){
     // deadlinelist = removeDupes(deadlinelist);
     // schoollist = removeDupes(schoollist);

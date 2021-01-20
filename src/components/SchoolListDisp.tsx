@@ -1,25 +1,32 @@
-import React, {useState} from 'react'
+import React from 'react'
 import '../css/SchoolListDisp.scss'
 import SchoolDisp from './SchoolDisp'
+
+import {storeShowComplete, storeShowDates} from '../chromeAPI/storeNewDeadline'
 
 import DeadlineType from '../types/deadlineType'
 
 import {useRecoilValue, useRecoilState} from 'recoil'
 import SortedDeadlineList from '../states/sorteddeadlinelist'
 import ShowComplete from '../states/showcompleteAtom'
+import ShowDates from '../states/showdateAtom'
 
 // this component can either show or not show dates
 const SchoolListDisp: React.FC = () => {
     const sorteddeadlinelist = useRecoilValue<DeadlineType[]>(SortedDeadlineList);
-    const [showDates, setShowDates] = useState<boolean>(false);
+    const [showDates, setShowDates] = useRecoilState<boolean>(ShowDates);
     const [showComplete, setShowComplete] = useRecoilState<boolean>(ShowComplete);
 
     const toggleDates = () => {
+        const cacheClosure: boolean = showDates;
         setShowDates(!showDates);
+        storeShowDates(!cacheClosure);
     }
 
     const toggleComplete = () => {
+        const cacheClosure: boolean = showComplete;
         setShowComplete(!showComplete);
+        storeShowComplete(!cacheClosure);
     }
 
     return (

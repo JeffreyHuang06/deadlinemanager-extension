@@ -6,6 +6,7 @@ import SchoolListDisp from './components/SchoolListDisp'
 import {retrieveSortedJSONList} from './chromeAPI/retrieveDeadlineJSON'
 import {retrieveSchoolList} from './chromeAPI/retrieveSchoolList'
 import {retrieveSchoolStateList} from './chromeAPI/retrieveSchoolStateList'
+import {retrieveShowDates, retrieveShowComplete} from './chromeAPI/retrieveShows'
 
 import DeadlineType from './types/deadlineType'
 import SB from './types/hashmapsb'
@@ -14,6 +15,8 @@ import {useSetRecoilState} from 'recoil'
 import DeadlineList from './states/deadlinelistAtom'
 import SchoolList from './states/schoollistAtom'
 import SchoolStateList from './states/schoolstatelistAtom'
+import ShowComplete from './states/showcompleteAtom'
+import ShowDates from './states/showdateAtom' 
 
 import './css/generic.sass'
 // make all componets classes expect for those that useState
@@ -23,15 +26,21 @@ const App = () => {
   const setDeadlineList = useSetRecoilState(DeadlineList);
   const setSchoolList = useSetRecoilState(SchoolList);
   const setSchoolStateList = useSetRecoilState<SB>(SchoolStateList);
+  const setShowDates = useSetRecoilState<boolean>(ShowDates);
+  const setShowComplete = useSetRecoilState<boolean>(ShowComplete);
 
   const getAtoms = async() => {
     const res1: DeadlineType[] = await retrieveSortedJSONList();
     const res2: string[] = await retrieveSchoolList();
     const res3 = await retrieveSchoolStateList();
+    const res4 = await retrieveShowComplete();
+    const res5 = await retrieveShowDates();
 
     setDeadlineList(res1);
     setSchoolList(res2);
     setSchoolStateList(new SB(res3));
+    setShowComplete(res4);
+    setShowDates(res5);
   }
 
   useEffect(() => {
