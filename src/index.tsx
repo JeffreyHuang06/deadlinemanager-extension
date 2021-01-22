@@ -1,4 +1,9 @@
 import React from 'react';
+
+import env from 'react-dotenv'
+const _temp = env.DEV === "true" && import ("react-devtools");
+
+/* eslint-disable */
 import ReactDOM from 'react-dom';
 import App from './App';
 import { RecoilRoot } from 'recoil'
