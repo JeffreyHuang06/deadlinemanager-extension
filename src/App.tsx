@@ -36,6 +36,10 @@ const App = () => {
     const res4 = await retrieveShowComplete();
     const res5 = await retrieveShowDates();
 
+    if (res1 === undefined || res2 === undefined || res3 === undefined || res4 === undefined || res5 === undefined){
+      return false;
+    }
+
     setDeadlineList(res1);
     setSchoolList(res2);
     setSchoolStateList(new SB(res3));
@@ -44,8 +48,11 @@ const App = () => {
   }
 
   useEffect(() => {
-    getAtoms();
+    const fetcher = setInterval(() => {
+      const success = getAtoms();
 
+      if (success) clearInterval(fetcher);
+    }, 200);
   //eslint-disable-next-line
   }, []);
 
