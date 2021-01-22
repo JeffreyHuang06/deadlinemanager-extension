@@ -4,6 +4,8 @@ import '../css/Inputer.scss'
 import checkList from '../utils/checkList'
 import checkDate from '../utils/checkDate'
 import {storeLists} from '../chromeAPI/storeNewDeadline'
+//@ts-ignore
+import cloneDeep from 'lodash.clonedeep'
 
 import DeadlineType from '../types/deadlineType'
 import SB from '../types/hashmapsb'
@@ -56,12 +58,12 @@ const InputForm: React.FC = () => {
         if (validateForm()) {
 
             // change schoollist state
-            let slist: string[] = schoollist.slice();
+            let slist: string[] = cloneDeep(schoollist);
             slist.push(inputschool);
             setSchoolList(slist);
 
             // change deadlinelist state
-            let dlist: DeadlineType[] = deadlinelist.slice();
+            let dlist: DeadlineType[] = cloneDeep(deadlinelist);
             dlist.push({
                 "school": inputschool,
                 "date": inputdate
